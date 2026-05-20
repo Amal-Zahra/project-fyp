@@ -1,0 +1,243 @@
+/* =====================================
+ABOUT SECTION
+===================================== */
+
+.about-container{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+
+    gap:60px;
+
+    align-items:center;
+}
+
+.about-image img{
+
+    width:100%;
+
+    border-radius:35px;
+
+    box-shadow:var(--shadow);
+}
+
+.about-content span{
+
+    color:#ff8fb1;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    font-size:13px;
+}
+
+.about-content h2{
+
+    font-size:58px;
+
+    color:#c96b90;
+
+    margin:20px 0;
+}
+
+.about-content p{
+
+    line-height:1.9;
+
+    margin-bottom:20px;
+
+    color:#6f5c64;
+}
+
+/* =====================================
+FEATURED BANNER
+===================================== */
+
+.featured-banner{
+
+    margin:80px 7%;
+
+    height:500px;
+
+    border-radius:40px;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        rgba(255,246,250,0.45),
+        rgba(255,246,250,0.55)
+    ),
+    url('banner(1).jpeg');
+
+    background-size:cover;
+
+    background-position:center;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+}
+
+.featured-overlay{
+
+    max-width:750px;
+
+    padding:20px;
+}
+
+.featured-overlay h2{
+
+    font-size:68px;
+
+    color:#c96b90;
+
+    margin-bottom:20px;
+}
+
+.featured-overlay p{
+
+    line-height:1.9;
+
+    margin-bottom:30px;
+
+    color:#5f4b55;
+}
+
+/* =====================================
+SERVICES
+===================================== */
+
+.services-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:35px;
+}
+
+.service-card{
+
+    background:white;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    box-shadow:var(--shadow);
+
+    transition:0.4s;
+}
+
+.service-card:hover{
+
+    transform:translateY(-10px);
+}
+
+.service-card img{
+
+    width:100%;
+
+    height:260px;
+
+    object-fit:cover;
+}
+
+.service-card h3{
+
+    color:#c96b90;
+
+    padding:25px 25px 10px;
+
+    font-size:32px;
+}
+
+.service-card p{
+
+    padding:0 25px 30px;
+
+    line-height:1.8;
+
+    color:#6f5c64;
+}
+
+/* =====================================
+INSTAGRAM
+===================================== */
+
+.instagram-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+}
+
+.instagram-grid img{
+
+    width:100%;
+
+    height:280px;
+
+    object-fit:cover;
+
+    border-radius:25px;
+
+    transition:0.4s;
+
+    box-shadow:var(--shadow);
+}
+
+.instagram-grid img:hover{
+
+    transform:scale(1.04);
+}
+
+/* =====================================
+FAQ
+===================================== */
+
+.faq-container{
+
+    max-width:900px;
+
+    margin:auto;
+}
+
+.faq-item{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:25px;
+
+    margin-bottom:20px;
+
+    box-shadow:var(--shadow);
+}
+
+.faq-item h3{
+
+    color:#c96b90;
+
+    margin-bottom:15px;
+}
+
+.faq-item p{
+
+    line-height:1.8;
+
+    color:#6f5c64;
+}

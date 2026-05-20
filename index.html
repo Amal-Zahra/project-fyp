@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Fusion Beauty | Soft Elegance & Skincare</title>
+
+<!-- Importing Montserrat for body text and Playfair Display for elegant headings -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+
+<head>
+    <link rel="icon" type="image/jpeg" href="logo.jpeg">
+    <title>Fusion Beauty | Soft Elegance & Skincare</title>
+    </head>
+
+<style>
+:root {
+    /* The New Girly & Elegant Palette */
+    --primary: #C67A9B;        /* Dusty Rose / Deep Blush */
+    --primary-hover: #A85B7C;  /* Darker Rose for hover states */
+    --accent: #F2C4D3;         /* Soft Baby Pink */
+    --bg-main: #FFF7F9;        /* Very light whisper pink background */
+    --bg-card: #FFFFFF;        /* Pure white for cards to pop */
+    --text-main: #5C4B51;      /* Soft charcoal/brown instead of harsh black */
+    --text-muted: #9E8990;     /* Muted taupe/mauve */
+    --border-color: #F4E1E6;   /* Soft pinkish border */
+    
+    /* Softer, more diffuse shadows */
+    --card-shadow: 0 15px 35px rgba(198, 122, 155, 0.08);
+    --hover-shadow: 0 20px 40px rgba(198, 122, 155, 0.15);
+    
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --radius-soft: 16px;       /* Rounded corners for a softer look */
+    --radius-pill: 50px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* CUSTOM SCROLLBAR - Softened */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+h1, h2, h3, h4, .playfair {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary);
+}
+
+.section {
+    padding: 100px 5% 60px;
+}
+
+/* Romantic Buttons */
+.btn-luxury {
+    background: var(--primary);
+    color: #ffffff;
+    padding: 15px 35px;
+    border: none;
+    border-radius: var(--radius-pill);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(198, 122, 155, 0.2);
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-luxury:hover {
+    background: var(--primary-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(198, 122, 155, 0.3);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background: rgba(255, 247, 249, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    border-bottom: 1px solid rgba(244, 225, 230, 0.6);
+}
+
+.logo-link {
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--primary);
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    position: relative;
+    padding: 5px 0;
+    transition: var(--transition-smooth);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: var(--transition-smooth);
+    border-radius: 2px;
+}
+
+.nav-links a:hover::after, .nav-links a.active::after {
+    width: 100%;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--primary);
+}
+
+.cart-icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    padding: 8px;
+    transition: var(--transition-smooth);
+}
+
+.cart-icon-btn:hover {
+    transform: translateY(-2px);
+}
+
+.cart-icon-svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: var(--primary);
+    stroke-width: 1.5;
+}
+
+.cart-counter {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--accent);
+    color: var(--text-main);
+    font-size: 10px;
+    font-weight: 600;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--bg-main);
+}
+
+.hero {
+    height: 85vh;
+    background: linear-gradient(135deg, rgba(255, 247, 249, 0.9) 0%, rgba(242, 196, 211, 0.4) 100%), 
+                url('https://images.unsplash.com/photo-1612817288484-6f916006741a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 5%;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: 64px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--primary);
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero h1 i {
+    color: var(--text-main);
+    font-weight: 300;
+}
+
+.hero p {
+    font-size: 16px;
+    font-weight: 400;
+    max-width: 600px;
+    margin-bottom: 40px;
+    color: var(--text-main);
+    line-height: 1.8;
+    animation: fadeInUp 1.2s ease-out;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-header h2 {
+    font-size: 36px;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.section-header p {
+    font-size: 14px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.category-row-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 30px;
+    padding: 0 5%;
+}
+
+.category-row-box {
+    background: var(--bg-card);
+    border-radius: var(--radius-soft);
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border-color);
+}
+
+.category-row-box:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--hover-shadow);
+    border-color: var(--accent);
+}
+
+.cat-icon-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--bg-main);
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 2px solid var(--accent);
+    transition: var(--transition-smooth);
+}
+
+.category-row-box:hover .cat-icon-circle {
+    transform: scale(1.05);
+    border-color: var(--primary);
+}
+
+.cat-icon-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.category-row-box p {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--text-main);
+}
+
+.filter-track {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-pill);
+    padding: 10px 25px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    box-shadow: 0 6px 15px rgba(198, 122, 155, 0.25);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px;
+    padding: 0 5%;
+}
+
+.product-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-soft);
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    box-shadow: var(--card-shadow);
+    border: 1px solid rgba(244, 225, 230, 0.3);
+    position: relative;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--hover-shadow);
+}
+
+.product-image-wrap {
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    position: relative;
+    background: var(--bg-main);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-card img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.product-card:hover img {
+    transform: scale(1.1);
+}
+
+.product-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: var(--transition-smooth);
+    display: flex;
+    justify-content: center;
+}
+
+.product-card:hover .product-overlay {
+    opacity: 1;
+}
+
+.btn-add-cart {
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-pill);
+    padding: 12px 25px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(198, 122, 155, 0.15);
+    transform: translateY(15px);
+    transition: var(--transition-smooth);
+    backdrop-filter: blur(5px);
+}
+
+.product-card:hover .btn-add-cart {
+    transform: translateY(0);
+}
+
+.btn-add-cart:hover {
+    background: var(--primary);
+    color: #ffffff;
+    border-color: var(--primary);
+}
+
+.product-meta {
+    padding: 25px 20px;
+    text-align: center;
+    background: #ffffff;
+    border-top: 1px solid var(--bg-main);
+}
+
+.product-meta h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 8px;
+}
+
+.product-price {
+    font-size: 14px;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.cart-drawer {
+    position: fixed;
+    top: 0;
+    right: -460px;
+    width: 460px;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: -10px 0 40px rgba(198, 122, 155, 0.15);
+    z-index: 1001;
+    transition: right 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+@media(max-width: 500px) {
+    .cart-drawer { width: 100%; right: -100%; }
+}
+
+.cart-drawer.open { right: 0; }
+
+.cart-header {
+    padding: 30px 40px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-main);
+}
+
+.cart-header h2 {
+    font-size: 22px;
+    margin: 0;
+}
+
+.close-drawer-btn {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.close-drawer-btn:hover {
+    background: var(--accent);
+    color: var(--primary);
+    transform: rotate(90deg);
+}
+
+.cart-items-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 30px 40px;
+}
+
+.cart-item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+    align-items: center;
+    background: var(--bg-card);
+    padding: 15px;
+    border-radius: var(--radius-soft);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.cart-item-img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 10px;
+    background: var(--bg-main);
+}
+
+.cart-item-details { flex: 1; }
+
+.cart-item-details h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    margin-bottom: 4px;
+    color: var(--text-main);
+}
+
+.cart-item-price {
+    font-size: 13px;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.cart-item-remove {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 8px;
+    transition: var(--transition-smooth);
+}
+
+.cart-item-remove:hover { color: #D9534F; }
+
+.cart-footer {
+    padding: 30px 40px;
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-main);
+}
+
+.cart-total-row {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 25px;
+    color: var(--text-main);
+}
+
+.promo-banner {
+    background: linear-gradient(to right, var(--accent), #F9D8E2);
+    padding: 80px 10%;
+    text-align: center;
+    margin: 80px 5% 40px;
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(242, 196, 211, 0.4);
+}
+
+.promo-banner::before {
+    content: '✨';
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    font-size: 40px;
+    opacity: 0.5;
+}
+.promo-banner::after {
+    content: '✨';
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    font-size: 40px;
+    opacity: 0.5;
+}
+
+.promo-banner h2 {
+    font-size: 42px;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.promo-banner p {
+    color: var(--text-main);
+    font-size: 15px;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    line-height: 1.6;
+}
+
+.chat-widget {
+    position: fixed;
+    bottom: 100px;
+    right: 40px;
+    width: 350px;
+    height: 500px;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(198, 122, 155, 0.2);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: translateY(20px) scale(0.9);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid var(--border-color);
+}
+
+.chat-widget.active {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.chat-trigger-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 40px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: #ffffff;
+    border: none;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(198, 122, 155, 0.4);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    transition: var(--transition-smooth);
+}
+
+.chat-trigger-btn:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 15px 35px rgba(198, 122, 155, 0.5);
+}
+
+.chat-widget-header {
+    background: var(--bg-main);
+    color: var(--primary);
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.chat-widget-header h3 {
+    font-size: 16px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.chat-close-x {
+    background: var(--accent);
+    color: white;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+}
+
+.chat-close-x:hover {
+    background: var(--primary);
+}
+
+.chat-window {
+    flex: 1;
+    padding: 25px;
+    overflow-y: auto;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.msg-bubble {
+    padding: 12px 18px;
+    font-size: 13px;
+    max-width: 85%;
+    line-height: 1.5;
+    border-radius: 18px;
+}
+
+.msg-bubble.bot {
+    background: var(--bg-main);
+    color: var(--text-main);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+}
+
+.msg-bubble.user {
+    background: var(--primary);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+}
+
+.typing-indicator {
+    display: none;
+    align-self: flex-start;
+    background: var(--bg-main);
+    padding: 12px 18px;
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+}
+
+.typing-dots span {
+    width: 6px;
+    height: 6px;
+    background: var(--primary);
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 4px;
+    animation: bounce 1.4s infinite ease-in-out both;
+}
+.typing-dots span:nth-child(1) { animation-delay: -0.32s; }
+.typing-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes bounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+}
+
+.chat-footer-input {
+    display: flex;
+    border-top: 1px solid var(--border-color);
+    background: #ffffff;
+    padding: 10px;
+}
+
+.chat-footer-input input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-pill);
+    outline: none;
+    font-size: 13px;
+    background: var(--bg-main);
+    color: var(--text-main);
+}
+
+.chat-footer-input button {
+    background: var(--primary);
+    border: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    margin-left: 10px;
+    color: white;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-footer-input button:hover {
+    background: var(--primary-hover);
+    transform: scale(1.05);
+}
+
+.cart-overlay-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(92, 75, 81, 0.3);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: none;
+}
+
+footer {
+    background: var(--bg-card);
+    color: var(--text-muted);
+    padding: 80px 5% 40px;
+    font-size: 13px;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.footer-col h4 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary);
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 12px; }
+
+.footer-col ul li a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.footer-col ul li a:hover {
+    color: var(--primary);
+    padding-left: 5px;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    padding-top: 30px;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+</style>
+</head>
+<body>
+
+<div class="cart-overlay-bg" id="cartOverlay" onclick="uiController.closeCart()"></div>
+
+<div class="nav-container">
+    <a href="#" class="logo-link">
+        Fusion Beauty.
+    </a>
+    <div class="nav-links">
+        <a href="#" class="active">Collection</a>
+        <a href="#cat-section">Categories</a>
+        <a href="#prod-section">Boutique</a>
+        <a href="#promo-section">Offers</a>
+    </div>
+    <div class="nav-actions">
+        <button class="cart-icon-btn" onclick="uiController.openCart()" aria-label="Open Shopping Cart">
+            <svg class="cart-icon-svg" viewBox="0 0 24 24">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z"></path>
+                <path d="M3 6h18M16 10a4 4 0 01-8 0"></path>
+            </svg>
+            <div class="cart-counter" id="cartCounter">0</div>
+        </button>
+    </div>
+</div>
+
+<div class="hero">
+    <h1>Discover Your <i>Inner Glow</i></h1>
+    <p>Soft, nurturing formulas designed to enhance your natural beauty. Experience cosmetics that feel as delicate as a rose petal.</p>
+    <button class="btn-luxury" onclick="document.getElementById('prod-section').scrollIntoView({behavior: 'smooth'})">Shop the Collection</button>
+</div>
+
+<div class="section" id="cat-section">
+    <div class="section-header">
+        <p>Curated For You</p>
+        <h2>Beauty Categories</h2>
+    </div>
+    <div class="category-row-grid">
+        <div class="category-row-box" onclick="uiController.triggerFilterFromRow('makeup')">
+            <div class="cat-icon-circle"><img src="makeup.jpeg" alt="Makeup"></div>
+            <p>Complexion</p>
+        </div>
+        <div class="category-row-box" onclick="uiController.triggerFilterFromRow('lip')">
+            <div class="cat-icon-circle"><img src="lip.jpeg" alt="Lip Care"></div>
+            <p>Lip Care</p>
+        </div>
+        <div class="category-row-box" onclick="uiController.triggerFilterFromRow('skincare')">
+            <div class="cat-icon-circle"><img src="skincare.jpeg" alt="Skin Care"></div>
+            <p>Skin Care</p>
+        </div>
+        <div class="category-row-box" onclick="uiController.triggerFilterFromRow('eye')">
+            <div class="cat-icon-circle"><img src="eye.jpeg" alt="Eye Care"></div>
+            <p>Eyes</p>
+        </div>
+        <div class="category-row-box" onclick="uiController.triggerFilterFromRow('serum')">
+            <div class="cat-icon-circle"><img src="serums.jpeg" alt="Serums"></div>
+            <p>Serums</p>
+        </div>
+    </div>
+</div>
+
+<div class="section" id="prod-section">
+    <div class="section-header">
+        <p>The Boutique</p>
+        <h2>Our Favorites</h2>
+    </div>
+
+    <div class="filter-track" id="filterTrack">
+        <button class="filter-btn active" data-cat="all" onclick="uiController.filterProducts('all', this)">All</button>
+        <button class="filter-btn" data-cat="makeup" onclick="uiController.filterProducts('makeup', this)">Complexion</button>
+        <button class="filter-btn" data-cat="lip" onclick="uiController.filterProducts('lip', this)">Lips</button>
+        <button class="filter-btn" data-cat="skincare" onclick="uiController.filterProducts('skincare', this)">Skincare</button>
+        <button class="filter-btn" data-cat="eye" onclick="uiController.filterProducts('eye', this)">Eyes</button>
+        <button class="filter-btn" data-cat="serum" onclick="uiController.filterProducts('serum', this)">Serums</button>
+    </div>
+
+    <div class="product-grid" id="productGrid"></div>
+</div>
+
+<div class="promo-banner" id="promo-section">
+    <h2>Join The Beauty Club</h2>
+    <p>Sign up to receive early access to new launches, exclusive beauty tips, and a complimentary 15% off your first glowing purchase with us.</p>
+    <button class="btn-luxury" style="background: #ffffff; color: var(--primary);">Unlock Offer</button>
+</div>
+
+<div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+        <h2 class="playfair">Your Beauty Bag</h2>
+        <button class="close-drawer-btn" onclick="uiController.closeCart()">✕</button>
+    </div>
+    <div class="cart-items-list" id="cartItemsList"></div>
+    <div class="cart-footer">
+        <div class="cart-total-row">
+            <span>Subtotal</span>
+            <span id="cartSubtotal">PKR 0</span>
+        </div>
+        <button class="btn-luxury" style="width: 100%;">Checkout</button>
+    </div>
+</div>
+
+<button class="chat-trigger-btn" id="chatTrigger" onclick="uiController.openChat()" aria-label="Open Help Assistant">✨</button>
+
+<div class="chat-widget" id="chatWidget">
+    <div class="chat-widget-header">
+        <h3>✨ Beauty Advisor</h3>
+        <button class="chat-close-x" onclick="uiController.closeChat()">✕</button>
+    </div>
+    <div class="chat-window" id="chatWindow"></div>
+    <div class="typing-indicator" id="typingIndicator">
+        <div class="typing-dots"><span></span> <span></span> <span></span></div>
+    </div>
+    <div class="chat-footer-input">
+        <input type="text" id="chatInputField" placeholder="Ask about our products..." onkeypress="if(event.key === 'Enter') uiController.submitUserMessage()">
+        <button onclick="uiController.submitUserMessage()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        </button>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>Fusion Beauty</h4>
+            <p style="margin-bottom: 20px; line-height: 1.6;">Crafting clean, gentle formulas that celebrate your natural glow. Cruelty-free and lovingly made.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Explore</h4>
+            <ul>
+                <li><a href="#">Our Story</a></li>
+                <li><a href="#">Ingredients Glossary</a></li>
+                <li><a href="#">The Beauty Blog</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Customer Care</h4>
+            <ul>
+                <li><a href="#">Shipping & Returns</a></li>
+                <li><a href="#">Track Order</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2026 Fusion Beauty. Designed with Love.
+    </div>
+</footer>
+
+<script>
+const CosmeticsStore = {
+    products: [
+        { id: 1, name: "Velvet Foundation Glow", price: 25.00, category: "makeup", img: "makeup.jpeg" },
+        { id: 2, name: "Luxury Matte Lipstick", price: 12.00, category: "lip", img: "lip.jpeg" },
+        { id: 3, name: "Hydrating Day Cream", price: 34.00, category: "skincare", img: "skincare.jpeg" },
+        { id: 4, name: "Absolute Precision Eyeliner", price: 16.50, category: "eye", img: "eye.jpeg" },
+        { id: 5, name: "Active Retinol Glow Serum", price: 30.00, category: "serum", img: "serums.jpeg" },
+        { id: 6, name: "Satin Luminizing Blush", price: 18.50, category: "makeup", img: "makeup.jpeg" }
+    ],
+    cart: [],
+
+    addToCart(id) {
+        const item = this.products.find(p => p.id === id);
+        if (item) {
+            this.cart.push(item);
+            uiController.renderCartDOM();
+        }
+    },
+
+    removeFromCart(index) {
+        this.cart.splice(index, 1);
+        uiController.renderCartDOM();
+    },
+
+    getCartSubtotal() {
+        return this.cart.reduce((sum, i) => sum + i.price, 0);
+    }
+};
+
+const uiController = {
+
+    init() {
+        this.renderProducts(CosmeticsStore.products);
+        this.bot("Hi ✨ I'm your AI Beauty Assistant. Ask me anything about skincare or makeup!");
+    },
+
+    // PRODUCTS
+    renderProducts(items) {
+        const grid = document.getElementById("productGrid");
+
+        grid.innerHTML = items.map(p => `
+            <div class="product-card">
+                <div class="product-image-wrap">
+                    <img src="${p.img}" alt="${p.name}">
+                    <div class="product-overlay">
+                        <button class="btn-add-cart" onclick="CosmeticsStore.addToCart(${p.id})">
+                            Add To Cart
+                        </button>
+                    </div>
+                </div>
+                <div class="product-meta">
+                    <h3>${p.name}</h3>
+                    <div class="product-price">$${p.price}</div>
+                </div>
+            </div>
+        `).join('');
+    },
+
+    // CART
+    renderCartDOM() {
+        document.getElementById("cartCounter").innerText = CosmeticsStore.cart.length;
+
+        const box = document.getElementById("cartItemsList");
+
+        if (CosmeticsStore.cart.length === 0) {
+            box.innerHTML = "<p style='text-align:center'>Cart is empty</p>";
+        } else {
+            box.innerHTML = CosmeticsStore.cart.map((p, i) => `
+                <div class="cart-item">
+                    <img src="${p.img}" class="cart-item-img">
+                    <div class="cart-item-details">
+                        <h4>${p.name}</h4>
+                        <div>$${p.price}</div>
+                        <button onclick="CosmeticsStore.removeFromCart(${i})">Remove</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        document.getElementById("cartSubtotal").innerText =
+            "$" + CosmeticsStore.getCartSubtotal().toFixed(2);
+    },
+
+    // CHAT OPEN/CLOSE
+    openChat() {
+        document.getElementById("chatWidget").classList.add("active");
+        document.getElementById("chatTrigger").style.display = "none";
+    },
+
+    closeChat() {
+        document.getElementById("chatWidget").classList.remove("active");
+        document.getElementById("chatTrigger").style.display = "flex";
+    },
+
+    // SEND MESSAGE TO AI
+    async submitUserMessage() {
+        const input = document.getElementById("chatInputField");
+        const text = input.value.trim();
+        if (!text) return;
+
+        this.addMessage(text, "user");
+        input.value = "";
+
+        this.showTyping(true);
+
+        try {
+            const res = await fetch("http://localhost:3000/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: text })
+            });
+
+            const data = await res.json();
+
+            this.showTyping(false);
+            this.bot(data.reply);
+
+        } catch (err) {
+            this.showTyping(false);
+            this.bot("AI is currently offline. Please try again later.");
+        }
+    },
+
+    // CHAT UI
+    addMessage(text, type) {
+        const box = document.getElementById("chatWindow");
+
+        const div = document.createElement("div");
+        div.className = "msg-bubble " + type;
+        div.innerText = text;
+
+        box.appendChild(div);
+        box.scrollTop = box.scrollHeight;
+    },
+
+    bot(text) {
+        this.addMessage(text, "bot");
+    },
+
+    showTyping(show) {
+        const t = document.getElementById("typingIndicator");
+        t.style.display = show ? "block" : "none";
+    }
+};
+
+window.addEventListener("DOMContentLoaded", () => uiController.init());
+</script>
+
+</body>
+</html>
+
