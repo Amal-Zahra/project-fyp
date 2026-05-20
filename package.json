@@ -2,10 +2,11 @@
   "name": "project-02",
   "version": "1.0.0",
   "description": "",
-  "main": "script.js",
+  "main": "chatbot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node chatbot.js"
+    "start": "node chatbot.js",
+    "dev": "nodemon chatbot.js"
   },
   "keywords": [],
   "author": "",

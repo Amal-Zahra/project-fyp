@@ -868,9 +868,929 @@ footer {
     font-size: 12px;
     color: var(--text-muted);
 }
+
+/* ── PRODUCT DETAIL MODAL ── */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(92, 75, 81, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.modal-box {
+    background: #fff;
+    border-radius: 24px;
+    max-width: 860px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(198, 122, 155, 0.25);
+    transform: scale(0.92) translateY(20px);
+    transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    max-height: 90vh;
+}
+.modal-overlay.active .modal-box {
+    transform: scale(1) translateY(0);
+}
+.modal-img-side {
+    background: var(--bg-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    min-height: 460px;
+}
+.modal-img-side img {
+    width: 100%;
+    height: 100%;
+    max-height: 380px;
+    object-fit: contain;
+    border-radius: 12px;
+}
+.modal-info-side {
+    padding: 45px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    overflow-y: auto;
+}
+.modal-category-chip {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--primary);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 5px 14px;
+    border-radius: var(--radius-pill);
+    width: fit-content;
+}
+.modal-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text-main);
+    line-height: 1.3;
+    margin: 0;
+}
+.modal-stars-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+.modal-stars { color: #C67A9B; font-size: 16px; letter-spacing: 2px; }
+.modal-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--primary);
+    font-weight: 600;
+}
+.modal-desc {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin: 0;
+}
+.modal-ingredients-box {
+    background: var(--bg-main);
+    border-radius: 12px;
+    padding: 16px 20px;
+    border: 1px solid var(--border-color);
+}
+.modal-ingredients-box h5 {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    color: var(--primary);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.modal-ingredients-box p {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin: 0;
+}
+.modal-close-btn {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    transition: var(--transition-smooth);
+    z-index: 10;
+}
+.modal-close-btn:hover { background: var(--accent); color: var(--primary); }
+@media(max-width: 640px) {
+    .modal-box { grid-template-columns: 1fr; }
+    .modal-img-side { min-height: 220px; padding: 24px; }
+    .modal-info-side { padding: 28px 24px; }
+}
+
+/* ── CART QUANTITY CONTROLS ── */
+.qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+.qty-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background: var(--bg-main);
+    color: var(--primary);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition: var(--transition-smooth);
+}
+.qty-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+.qty-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-main);
+    min-width: 20px;
+    text-align: center;
+}
+
+/* ── REVIEWS SECTION ── */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 0 5%;
+}
+.review-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-soft);
+    padding: 35px 30px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: var(--transition-smooth);
+    position: relative;
+}
+.review-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--hover-shadow);
+}
+.review-quote-icon {
+    font-size: 48px;
+    line-height: 1;
+    color: var(--accent);
+    font-family: 'Playfair Display', serif;
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    opacity: 0.6;
+}
+.review-stars-display { color: var(--primary); font-size: 18px; letter-spacing: 3px; }
+.review-text {
+    font-size: 14px;
+    color: var(--text-main);
+    line-height: 1.8;
+    font-style: italic;
+    flex: 1;
+}
+.review-divider {
+    height: 1px;
+    background: var(--border-color);
+}
+.review-author-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+.review-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+.review-author-name {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text-main);
+    margin-bottom: 3px;
+}
+.review-product-tag {
+    font-size: 11px;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ── SCROLL PROGRESS BAR ── */
+.scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    z-index: 9999;
+    transition: width 0.08s linear;
+}
+
+/* ── TOAST NOTIFICATIONS ── */
+.toast-container {
+    position: fixed;
+    bottom: 115px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    pointer-events: none;
+}
+.toast {
+    background: var(--text-main);
+    color: #fff;
+    padding: 12px 22px;
+    border-radius: var(--radius-pill);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: toastIn 0.35s cubic-bezier(0.25,0.8,0.25,1) forwards;
+    white-space: nowrap;
+}
+.toast.success { background: linear-gradient(135deg, var(--primary), var(--primary-hover)); }
+.toast.error   { background: #c0392b; }
+.toast.fadeout { animation: toastOut 0.35s ease forwards; }
+@keyframes toastIn  { from { opacity:0; transform:translateY(16px) scale(0.9); } to { opacity:1; transform:translateY(0) scale(1); } }
+@keyframes toastOut { from { opacity:1; transform:translateY(0) scale(1); } to { opacity:0; transform:translateY(-10px) scale(0.9); } }
+
+/* ── CART BADGE PULSE ── */
+@keyframes cartPulse {
+    0%   { transform: scale(1); }
+    35%  { transform: scale(1.6); }
+    65%  { transform: scale(0.85); }
+    100% { transform: scale(1); }
+}
+.cart-counter.pulse { animation: cartPulse 0.45s cubic-bezier(0.25,0.8,0.25,1); }
+
+/* ── BACK TO TOP ── */
+.back-to-top {
+    position: fixed;
+    bottom: 115px;
+    left: 36px;
+    width: 46px;
+    height: 46px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    color: var(--primary);
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 900;
+    opacity: 0;
+    transform: translateY(16px);
+    pointer-events: none;
+    transition: all 0.35s ease;
+}
+.back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.back-to-top:hover   { background: var(--primary); color: #fff; transform: translateY(-3px); }
+
+/* ── SEARCH BAR ── */
+.search-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+.search-input {
+    width: 100%;
+    max-width: 460px;
+    padding: 14px 24px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-pill);
+    font-size: 13px;
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg-card);
+    color: var(--text-main);
+    outline: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    transition: var(--transition-smooth);
+}
+.search-input:focus { border-color: var(--primary); box-shadow: 0 4px 20px rgba(198,122,155,0.15); }
+.search-input::placeholder { color: var(--text-muted); }
+
+/* ── EMPTY STATE ── */
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 70px 20px;
+    color: var(--text-muted);
+}
+.empty-state-icon { font-size: 52px; margin-bottom: 16px; }
+.empty-state h3   { font-size: 22px; color: var(--primary); margin-bottom: 10px; }
+.empty-state p    { font-size: 14px; line-height: 1.7; }
+
+/* ── PRODUCT BADGES ── */
+.product-badge {
+    position: absolute;
+    top: 14px; left: 14px;
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    z-index: 2;
+}
+.badge-bestseller { background: var(--primary); color: #fff; }
+.badge-new        { background: #fff; color: var(--primary); border: 1px solid var(--accent); }
+
+/* ── LIGHTBOX ── */
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 3500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.lightbox-overlay.active { opacity: 1; pointer-events: auto; }
+.lightbox-img {
+    max-width: 85vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 16px;
+    transform: scale(0.88);
+    transition: transform 0.3s cubic-bezier(0.25,0.8,0.25,1);
+    cursor: zoom-out;
+}
+.lightbox-overlay.active .lightbox-img { transform: scale(1); }
+.lightbox-close {
+    position: absolute;
+    top: 22px; right: 26px;
+    background: rgba(255,255,255,0.12);
+    border: none;
+    color: #fff;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.22); }
+
+/* ── HAMBURGER / MOBILE MENU ── */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+}
+.hamburger span {
+    display: block;
+    width: 22px; height: 2px;
+    background: var(--primary);
+    border-radius: 2px;
+    transition: var(--transition-smooth);
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: rgba(255,247,249,0.98);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border-color);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+}
+.mobile-menu.open { display: flex; max-height: 300px; padding: 16px 5%; gap: 4px; }
+.mobile-menu a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+    transition: color 0.2s, padding-left 0.2s;
+}
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu a:hover { color: var(--primary); padding-left: 8px; }
+
+/* ── NEWSLETTER MODAL ── */
+.newsletter-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(92,75,81,0.45);
+    backdrop-filter: blur(8px);
+    z-index: 2500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+.newsletter-overlay.active { opacity: 1; pointer-events: auto; }
+.newsletter-modal {
+    background: #fff;
+    border-radius: 24px;
+    max-width: 460px;
+    width: 100%;
+    padding: 52px 44px;
+    text-align: center;
+    box-shadow: 0 30px 80px rgba(198,122,155,0.25);
+    transform: scale(0.92) translateY(20px);
+    transition: transform 0.35s cubic-bezier(0.25,0.8,0.25,1);
+    position: relative;
+}
+.newsletter-overlay.active .newsletter-modal { transform: scale(1) translateY(0); }
+.newsletter-modal .nl-icon   { font-size: 48px; margin-bottom: 16px; }
+.newsletter-modal h2          { font-size: 28px; margin-bottom: 10px; }
+.newsletter-modal .nl-sub     { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 30px; }
+.nl-input-row { display: flex; flex-direction: column; gap: 12px; }
+.nl-input-row input {
+    padding: 15px 22px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-pill);
+    font-size: 13px;
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg-main);
+    color: var(--text-main);
+    outline: none;
+    text-align: center;
+    transition: border-color 0.2s;
+}
+.nl-input-row input:focus { border-color: var(--primary); }
+.nl-success { display: none; flex-direction: column; align-items: center; gap: 10px; }
+.nl-success-icon { font-size: 56px; }
+.nl-success h3 { font-size: 22px; color: var(--primary); }
+.nl-success p  { font-size: 13px; color: var(--text-muted); margin: 0; }
+.newsletter-close-btn {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    transition: var(--transition-smooth);
+}
+.newsletter-close-btn:hover { background: var(--accent); color: var(--primary); }
+
+/* ── FOOTER NEWSLETTER ── */
+.footer-newsletter-form {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+}
+.footer-newsletter-form input {
+    flex: 1;
+    padding: 11px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-pill);
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg-main);
+    color: var(--text-main);
+    outline: none;
+    transition: border-color 0.2s;
+}
+.footer-newsletter-form input:focus { border-color: var(--primary); }
+.footer-newsletter-form button {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 11px 18px;
+    border-radius: var(--radius-pill);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+.footer-newsletter-form button:hover { background: var(--primary-hover); }
+
+/* ── STATS BAR ── */
+.stats-bar {
+    background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+    padding: 24px 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    flex-wrap: wrap;
+}
+.stat-item { text-align: center; }
+.stat-number { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 600; color: #fff; display: block; }
+.stat-label  { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.78); margin-top: 3px; display: block; }
+
+/* ── ABOUT SECTION ── */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    padding: 0 5%;
+}
+.about-img-wrap {
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--hover-shadow);
+}
+.about-img-wrap img { width: 100%; height: 520px; object-fit: cover; display: block; }
+.about-tag { font-size: 11px; text-transform: uppercase; letter-spacing: 2.5px; color: var(--primary); font-weight: 600; margin-bottom: 14px; display: block; }
+.about-content h2 { font-size: 36px; line-height: 1.25; margin-bottom: 20px; }
+.about-content p  { font-size: 14px; color: var(--text-muted); line-height: 1.9; margin-bottom: 12px; }
+.about-values { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.value-chip {
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-pill);
+    padding: 8px 18px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+/* ── FAQ SECTION ── */
+.faq-list {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.faq-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-soft);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+}
+.faq-item:hover { box-shadow: var(--card-shadow); }
+.faq-question {
+    padding: 20px 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-main);
+    transition: background 0.2s, color 0.2s;
+    user-select: none;
+}
+.faq-question:hover { background: var(--bg-main); }
+.faq-icon { color: var(--primary); font-size: 22px; font-weight: 300; transition: transform 0.35s cubic-bezier(0.25,0.8,0.25,1); flex-shrink: 0; margin-left: 16px; }
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.85;
+    padding: 0 24px;
+}
+.faq-item.open .faq-answer   { max-height: 300px; padding: 0 24px 22px; }
+.faq-item.open .faq-icon     { transform: rotate(45deg); }
+.faq-item.open .faq-question { color: var(--primary); }
+
+/* ── CONTACT SECTION ── */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    padding: 0 5%;
+    align-items: start;
+}
+.contact-form { display: flex; flex-direction: column; gap: 16px; }
+.contact-input {
+    padding: 15px 20px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-soft);
+    font-size: 13px;
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg-main);
+    color: var(--text-main);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+}
+.contact-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(198,122,155,0.1); }
+.contact-input::placeholder { color: var(--text-muted); }
+.contact-textarea { resize: vertical; min-height: 150px; }
+.contact-info-panel { display: flex; flex-direction: column; gap: 20px; }
+.contact-info-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-soft);
+    padding: 28px;
+    box-shadow: var(--card-shadow);
+}
+.contact-info-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+.contact-info-item:last-child  { border-bottom: none; padding-bottom: 0; }
+.contact-info-item:first-child { padding-top: 0; }
+.contact-info-icon {
+    width: 44px; height: 44px;
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+.contact-info-text h4 { font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 4px; font-family: 'Montserrat', sans-serif; }
+.contact-info-text p  { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin: 0; }
+.contact-map-box {
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-soft);
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+.contact-map-box span:first-child { font-size: 36px; }
+.contact-success { display: none; text-align: center; padding: 50px 20px; }
+.contact-success-icon { font-size: 56px; margin-bottom: 16px; }
+.contact-success h3 { font-size: 22px; color: var(--primary); margin-bottom: 10px; }
+.contact-success p  { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+/* ── CHECKOUT MODAL ── */
+.checkout-overlay {
+    position: fixed; inset: 0;
+    background: rgba(92,75,81,0.45);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+.checkout-overlay.active { opacity: 1; pointer-events: auto; }
+.checkout-modal {
+    background: #fff;
+    border-radius: 24px;
+    max-width: 720px; width: 100%;
+    max-height: 92vh; overflow-y: auto;
+    box-shadow: 0 30px 80px rgba(198,122,155,0.25);
+    transform: scale(0.92) translateY(20px);
+    transition: transform 0.35s cubic-bezier(0.25,0.8,0.25,1);
+    position: relative;
+}
+.checkout-overlay.active .checkout-modal { transform: scale(1) translateY(0); }
+.checkout-modal-header {
+    padding: 28px 40px;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-main);
+    display: flex; justify-content: space-between; align-items: center;
+    position: sticky; top: 0; z-index: 5;
+    border-radius: 24px 24px 0 0;
+}
+.checkout-modal-header h2 { font-size: 22px; margin: 0; }
+.checkout-body { padding: 32px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.checkout-section-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+.checkout-form { display: flex; flex-direction: column; gap: 12px; }
+.checkout-input {
+    padding: 13px 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 13px;
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg-main);
+    color: var(--text-main);
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+}
+.checkout-input:focus { border-color: var(--primary); }
+.checkout-input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.checkout-summary-box { background: var(--bg-main); border-radius: 16px; padding: 24px; }
+.checkout-summary-item { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-main); padding: 10px 0; border-bottom: 1px solid var(--border-color); }
+.checkout-summary-item:last-of-type { border-bottom: none; }
+.checkout-grand-total { display: flex; justify-content: space-between; font-weight: 700; font-size: 15px; margin-top: 14px; padding-top: 14px; border-top: 2px solid var(--border-color); }
+.checkout-payment-box { background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; gap: 14px; margin-top: 16px; }
+.checkout-footer-bar { padding: 20px 40px 32px; border-top: 1px solid var(--border-color); }
+
+/* ── ORDER CONFIRMED ── */
+.order-confirmed {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 60px 40px;
+    gap: 16px;
+}
+.order-confirmed-icon { font-size: 72px; }
+.order-confirmed h2   { font-size: 30px; }
+.order-confirmed p    { font-size: 14px; color: var(--text-muted); line-height: 1.7; max-width: 380px; }
+.order-ref-box {
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 14px 28px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+.order-ref-box strong { color: var(--primary); font-size: 15px; }
+
+/* ── OUT OF STOCK ── */
+.btn-out-of-stock {
+    background: rgba(255,255,255,0.9);
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-pill);
+    padding: 12px 25px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: not-allowed;
+    backdrop-filter: blur(4px);
+}
+.oos-badge {
+    position: absolute;
+    top: 14px; left: 14px;
+    background: var(--text-main);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    z-index: 3;
+}
+
+/* ── SKELETON LOADING ── */
+.skeleton-card { background: var(--bg-card); border-radius: var(--radius-soft); overflow: hidden; border: 1px solid var(--border-color); }
+.skeleton-img  { width: 100%; height: 350px; }
+.skeleton-body { padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+.skeleton-line { height: 14px; border-radius: 8px; }
+.skeleton-line.short { width: 55%; }
+.skeleton-img, .skeleton-line {
+    background: linear-gradient(90deg, var(--bg-main) 25%, #f8e8ed 50%, var(--bg-main) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s infinite;
+}
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* ── FLOATING CART PREVIEW ── */
+.cart-preview {
+    position: fixed;
+    top: 80px; right: 20px;
+    width: 300px;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 20px 50px rgba(198,122,155,0.22);
+    border: 1px solid var(--border-color);
+    z-index: 1500;
+    padding: 20px;
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+    pointer-events: none;
+    transition: all 0.35s cubic-bezier(0.25,0.8,0.25,1);
+}
+.cart-preview.visible { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+.cart-preview-label  { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); font-weight: 600; margin-bottom: 14px; }
+.cart-preview-item   { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; }
+.cart-preview-img    { width: 54px; height: 54px; border-radius: 10px; object-fit: cover; background: var(--bg-main); flex-shrink: 0; }
+.cart-preview-name   { font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 3px; }
+.cart-preview-price  { font-size: 12px; color: var(--primary); font-weight: 600; }
+.cart-preview-actions { display: flex; gap: 8px; }
+.cart-preview-actions button { flex: 1; padding: 10px; border-radius: var(--radius-pill); font-size: 11px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.btn-view-bag  { background: var(--primary); color: #fff; border: none; }
+.btn-view-bag:hover { background: var(--primary-hover); }
+.btn-continue  { background: var(--bg-main); color: var(--text-main); border: 1px solid var(--border-color); }
+.btn-continue:hover { border-color: var(--primary); color: var(--primary); }
+
+/* ── COOKIE NOTICE ── */
+.cookie-notice {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--text-main);
+    color: rgba(255,255,255,0.88);
+    padding: 18px 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px;
+    z-index: 5000;
+    font-size: 13px; line-height: 1.5;
+    transform: translateY(100%);
+    transition: transform 0.45s cubic-bezier(0.25,0.8,0.25,1);
+}
+.cookie-notice.visible { transform: translateY(0); }
+.cookie-notice p { margin: 0; flex: 1; }
+.cookie-notice p a { color: var(--accent); text-decoration: underline; cursor: pointer; }
+.cookie-btns { display: flex; gap: 10px; flex-shrink: 0; }
+.btn-cookie-accept { background: var(--primary); color: #fff; border: none; padding: 10px 22px; border-radius: var(--radius-pill); font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: background 0.2s; }
+.btn-cookie-accept:hover { background: var(--primary-hover); }
+.btn-cookie-decline { background: transparent; color: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.2); padding: 10px 18px; border-radius: var(--radius-pill); font-size: 12px; font-weight: 500; cursor: pointer; white-space: nowrap; transition: all 0.2s; }
+.btn-cookie-decline:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+
+/* ── RESPONSIVE ── */
+@media(max-width: 768px) {
+    .nav-links   { display: none; }
+    .hamburger   { display: flex; }
+    .hero h1     { font-size: 38px; }
+    .back-to-top { left: 16px; bottom: 110px; }
+    .footer-newsletter-form { flex-direction: column; }
+    .about-grid   { grid-template-columns: 1fr; gap: 40px; }
+    .about-img-wrap img { height: 280px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .checkout-body { grid-template-columns: 1fr; }
+    .checkout-modal-header, .checkout-body, .checkout-footer-bar { padding-left: 24px; padding-right: 24px; }
+    .stats-bar    { gap: 28px; }
+    .cookie-notice { flex-direction: column; align-items: flex-start; }
+    .cart-preview { width: calc(100vw - 32px); right: 16px; }
+    .order-confirmed { padding: 40px 24px; }
+}
 </style>
 </head>
 <body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="toast-container" id="toastContainer"></div>
 
 <div class="cart-overlay-bg" id="cartOverlay" onclick="uiController.closeCart()"></div>
 
@@ -879,12 +1799,16 @@ footer {
         Fusion Beauty.
     </a>
     <div class="nav-links">
-        <a href="#" class="active">Collection</a>
-        <a href="#cat-section">Categories</a>
-        <a href="#prod-section">Boutique</a>
-        <a href="#promo-section">Offers</a>
+        <a href="#" data-section="hero" class="active">Collection</a>
+        <a href="#cat-section" data-section="cat-section">Categories</a>
+        <a href="#prod-section" data-section="prod-section">Boutique</a>
+        <a href="#about-section" data-section="about-section">About</a>
+        <a href="#contact-section" data-section="contact-section">Contact</a>
     </div>
-    <div class="nav-actions">
+    <div class="nav-actions" style="display:flex;align-items:center;gap:12px;">
+        <button class="hamburger" id="hamburgerBtn" onclick="uiController.toggleMobileMenu()" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
         <button class="cart-icon-btn" onclick="uiController.openCart()" aria-label="Open Shopping Cart">
             <svg class="cart-icon-svg" viewBox="0 0 24 24">
                 <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z"></path>
@@ -895,10 +1819,25 @@ footer {
     </div>
 </div>
 
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#" onclick="uiController.closeMobileMenu()">Collection</a>
+    <a href="#cat-section" onclick="uiController.closeMobileMenu()">Categories</a>
+    <a href="#prod-section" onclick="uiController.closeMobileMenu()">Boutique</a>
+    <a href="#about-section" onclick="uiController.closeMobileMenu()">About</a>
+    <a href="#contact-section" onclick="uiController.closeMobileMenu()">Contact</a>
+</div>
+
 <div class="hero">
     <h1>Discover Your <i>Inner Glow</i></h1>
     <p>Soft, nurturing formulas designed to enhance your natural beauty. Experience cosmetics that feel as delicate as a rose petal.</p>
     <button class="btn-luxury" onclick="document.getElementById('prod-section').scrollIntoView({behavior: 'smooth'})">Shop the Collection</button>
+</div>
+
+<div class="stats-bar">
+    <div class="stat-item"><span class="stat-number">2,400+</span><span class="stat-label">Happy Customers</span></div>
+    <div class="stat-item"><span class="stat-number">6</span><span class="stat-label">Premium Products</span></div>
+    <div class="stat-item"><span class="stat-number">5</span><span class="stat-label">Beauty Categories</span></div>
+    <div class="stat-item"><span class="stat-number">100%</span><span class="stat-label">Cruelty Free</span></div>
 </div>
 
 <div class="section" id="cat-section">
@@ -936,6 +1875,10 @@ footer {
         <h2>Our Favorites</h2>
     </div>
 
+    <div class="search-wrap">
+        <input class="search-input" id="searchInput" type="text" placeholder="🔍  Search products...">
+    </div>
+
     <div class="filter-track" id="filterTrack">
         <button class="filter-btn active" data-cat="all" onclick="uiController.filterProducts('all', this)">All</button>
         <button class="filter-btn" data-cat="makeup" onclick="uiController.filterProducts('makeup', this)">Complexion</button>
@@ -951,7 +1894,7 @@ footer {
 <div class="promo-banner" id="promo-section">
     <h2>Join The Beauty Club</h2>
     <p>Sign up to receive early access to new launches, exclusive beauty tips, and a complimentary 15% off your first glowing purchase with us.</p>
-    <button class="btn-luxury" style="background: #ffffff; color: var(--primary);">Unlock Offer</button>
+    <button class="btn-luxury" style="background: #ffffff; color: var(--primary);" onclick="uiController.openNewsletter()">Unlock Offer</button>
 </div>
 
 <div class="cart-drawer" id="cartDrawer">
@@ -963,12 +1906,145 @@ footer {
     <div class="cart-footer">
         <div class="cart-total-row">
             <span>Subtotal</span>
-            <span id="cartSubtotal">PKR 0</span>
+            <span id="cartSubtotal">$0.00</span>
         </div>
-        <button class="btn-luxury" style="width: 100%;">Checkout</button>
+        <button class="btn-luxury" style="width: 100%;" onclick="uiController.closeCart(); uiController.openCheckout()">Checkout</button>
     </div>
 </div>
 
+<!-- CHECKOUT MODAL -->
+<div class="checkout-overlay" id="checkoutOverlay" onclick="event.target===this && uiController.closeCheckout()">
+    <div class="checkout-modal">
+        <div class="checkout-modal-header">
+            <h2>Secure Checkout</h2>
+            <button class="modal-close-btn" onclick="uiController.closeCheckout()">✕</button>
+        </div>
+        <div id="checkoutFormWrap">
+            <div class="checkout-body">
+                <div>
+                    <p class="checkout-section-label">Delivery Details</p>
+                    <div class="checkout-form">
+                        <input class="checkout-input" id="checkoutName"    type="text"  placeholder="Full name *">
+                        <input class="checkout-input" id="checkoutEmail"   type="email" placeholder="Email address *">
+                        <input class="checkout-input" id="checkoutPhone"   type="tel"   placeholder="Phone number *">
+                        <input class="checkout-input" id="checkoutAddress" type="text"  placeholder="Delivery address *">
+                        <div class="checkout-input-row">
+                            <input class="checkout-input" id="checkoutCity"   type="text" placeholder="City *">
+                            <input class="checkout-input" id="checkoutPostal" type="text" placeholder="Postal code">
+                        </div>
+                    </div>
+                    <div class="checkout-payment-box" style="margin-top:20px;">
+                        <span style="font-size:24px;">💵</span>
+                        <div>
+                            <div style="font-weight:600; font-size:14px; color:var(--text-main);">Cash on Delivery</div>
+                            <div style="font-size:12px; color:var(--text-muted);">Pay when your order arrives</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p class="checkout-section-label">Order Summary</p>
+                    <div class="checkout-summary-box">
+                        <div id="checkoutItemsList"></div>
+                        <div class="checkout-grand-total">
+                            <span>Total</span>
+                            <span id="checkoutTotal"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="checkout-footer-bar">
+                <button class="btn-luxury" style="width:100%;" onclick="uiController.submitOrder()">Place Order →</button>
+            </div>
+        </div>
+        <div class="order-confirmed" id="orderConfirmed">
+            <div class="order-confirmed-icon">🎉</div>
+            <h2>Order Placed!</h2>
+            <p>Thank you! Your Fusion Beauty order is confirmed and on its way to you soon.</p>
+            <div class="order-ref-box">Order reference: <strong id="orderNumber"></strong></div>
+            <button class="btn-luxury" style="margin-top:8px;" onclick="uiController.closeCheckout()">Continue Shopping</button>
+        </div>
+    </div>
+</div>
+
+<!-- FLOATING CART PREVIEW -->
+<div class="cart-preview" id="cartPreview">
+    <div class="cart-preview-label">✓ Added to your bag</div>
+    <div class="cart-preview-item">
+        <img class="cart-preview-img" id="cartPreviewImg" src="" alt="">
+        <div>
+            <div class="cart-preview-name"  id="cartPreviewName"></div>
+            <div class="cart-preview-price" id="cartPreviewPrice"></div>
+        </div>
+    </div>
+    <div class="cart-preview-actions">
+        <button class="btn-view-bag"  onclick="uiController.hideCartPreview(); uiController.openCart()">View Bag</button>
+        <button class="btn-continue"  onclick="uiController.hideCartPreview()">Continue</button>
+    </div>
+</div>
+
+<!-- COOKIE NOTICE -->
+<div class="cookie-notice" id="cookieNotice">
+    <p>🍪 We use cookies to enhance your beauty experience and personalise your journey. <a onclick="return false;">Learn more</a></p>
+    <div class="cookie-btns">
+        <button class="btn-cookie-accept"  onclick="uiController.acceptCookies()">Accept All</button>
+        <button class="btn-cookie-decline" onclick="uiController.declineCookies()">Decline</button>
+    </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox-overlay" id="lightboxOverlay" onclick="uiController.closeLightbox()">
+    <button class="lightbox-close" onclick="uiController.closeLightbox()">✕</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+</div>
+
+<!-- NEWSLETTER MODAL -->
+<div class="newsletter-overlay" id="newsletterOverlay" onclick="uiController.closeNewsletter()">
+    <div class="newsletter-modal" onclick="event.stopPropagation()">
+        <button class="newsletter-close-btn" onclick="uiController.closeNewsletter()">✕</button>
+        <div id="nlForm">
+            <div class="nl-icon">💌</div>
+            <h2>Join The Beauty Club</h2>
+            <p class="nl-sub">Get 15% off your first order plus early access to new launches and exclusive beauty tips.</p>
+            <div class="nl-input-row">
+                <input type="email" id="nlEmailInput" placeholder="Your email address">
+                <button class="btn-luxury" onclick="uiController.submitNewsletter()" style="width:100%;">Unlock My 15% Off</button>
+            </div>
+        </div>
+        <div class="nl-success" id="nlSuccess">
+            <div class="nl-success-icon">✨</div>
+            <h3>You're In!</h3>
+            <p>Check your inbox for your exclusive 15% off code. Welcome to the club, gorgeous!</p>
+        </div>
+    </div>
+</div>
+
+<!-- PRODUCT DETAIL MODAL -->
+<div class="modal-overlay" id="productModal" onclick="uiController.closeProductModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+        <button class="modal-close-btn" onclick="uiController.closeProductModal()">✕</button>
+        <div class="modal-img-side">
+            <img id="modalImg" src="" alt="" style="cursor:zoom-in;"
+                 onclick="uiController.openLightbox(this.src, this.alt)">
+        </div>
+        <div class="modal-info-side">
+            <span class="modal-category-chip" id="modalCategory"></span>
+            <h2 class="modal-name" id="modalName"></h2>
+            <div class="modal-stars-row">
+                <span class="modal-stars" id="modalStars"></span>
+                <span id="modalReviews"></span>
+            </div>
+            <div class="modal-price" id="modalPrice"></div>
+            <p class="modal-desc" id="modalDesc"></p>
+            <div class="modal-ingredients-box">
+                <h5>Key Ingredients</h5>
+                <p id="modalIngredients"></p>
+            </div>
+            <button class="btn-luxury" id="modalAddBtn" style="width:100%; margin-top:6px;">Add to Beauty Bag</button>
+        </div>
+    </div>
+</div>
+
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 <button class="chat-trigger-btn" id="chatTrigger" onclick="uiController.openChat()" aria-label="Open Help Assistant">✨</button>
 
 <div class="chat-widget" id="chatWidget">
@@ -988,26 +2064,199 @@ footer {
     </div>
 </div>
 
+<!-- ABOUT SECTION -->
+<div class="section" id="about-section">
+    <div class="about-grid">
+        <div class="about-img-wrap">
+            <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fusion Beauty story" loading="lazy">
+        </div>
+        <div class="about-content">
+            <span class="about-tag">Our Story</span>
+            <h2>Beauty Born from Passion & Purpose</h2>
+            <p>Fusion Beauty was founded on a simple belief — that everyone deserves cosmetics that feel as good as they look. We craft our formulas with clean, skin-loving ingredients that nourish as they beautify.</p>
+            <p>From our first blush to our bestselling serums, every product is a labour of love. We test rigorously, source responsibly, and never compromise on quality — because you deserve nothing less.</p>
+            <div class="about-values">
+                <span class="value-chip">🌿 Clean Ingredients</span>
+                <span class="value-chip">🐰 Cruelty Free</span>
+                <span class="value-chip">✨ Dermatologist Tested</span>
+                <span class="value-chip">🌍 Sustainably Sourced</span>
+                <span class="value-chip">💝 Woman-Owned</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TESTIMONIALS SECTION -->
+<div class="section" id="reviews-section">
+    <div class="section-header">
+        <p>Real Experiences</p>
+        <h2>Customer Love</h2>
+    </div>
+    <div class="reviews-grid">
+        <div class="review-card">
+            <span class="review-quote-icon">"</span>
+            <div class="review-stars-display">★★★★★</div>
+            <p class="review-text">"The Velvet Foundation gives the most natural finish I've ever tried. It blends like a dream and stays on all day — I get compliments every single time."</p>
+            <div class="review-divider"></div>
+            <div class="review-author-row">
+                <div class="review-avatar">S</div>
+                <div>
+                    <div class="review-author-name">Sara K.</div>
+                    <div class="review-product-tag">Velvet Foundation Glow</div>
+                </div>
+            </div>
+        </div>
+        <div class="review-card">
+            <span class="review-quote-icon">"</span>
+            <div class="review-stars-display">★★★★★</div>
+            <p class="review-text">"The Retinol Serum transformed my skin within two weeks. My dark spots have faded and my skin feels so plump and glowy. Worth every penny!"</p>
+            <div class="review-divider"></div>
+            <div class="review-author-row">
+                <div class="review-avatar">A</div>
+                <div>
+                    <div class="review-author-name">Amal Z.</div>
+                    <div class="review-product-tag">Active Retinol Glow Serum</div>
+                </div>
+            </div>
+        </div>
+        <div class="review-card">
+            <span class="review-quote-icon">"</span>
+            <div class="review-stars-display">★★★★★</div>
+            <p class="review-text">"The Luxury Matte Lipstick is everything. The colour payoff is insane, it doesn't dry my lips at all, and it lasts through coffee and lunch — unreal."</p>
+            <div class="review-divider"></div>
+            <div class="review-author-row">
+                <div class="review-avatar">M</div>
+                <div>
+                    <div class="review-author-name">Maha R.</div>
+                    <div class="review-product-tag">Luxury Matte Lipstick</div>
+                </div>
+            </div>
+        </div>
+        <div class="review-card">
+            <span class="review-quote-icon">"</span>
+            <div class="review-stars-display">★★★★☆</div>
+            <p class="review-text">"The Hydrating Day Cream is so light yet so moisturising. My combination skin has never been happier. The rose scent is just the cherry on top."</p>
+            <div class="review-divider"></div>
+            <div class="review-author-row">
+                <div class="review-avatar">Z</div>
+                <div>
+                    <div class="review-author-name">Zara N.</div>
+                    <div class="review-product-tag">Hydrating Day Cream</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FAQ SECTION -->
+<div class="section" id="faq-section">
+    <div class="section-header">
+        <p>Got Questions?</p>
+        <h2>Frequently Asked</h2>
+    </div>
+    <div class="faq-list">
+        <div class="faq-item">
+            <div class="faq-question" onclick="uiController.toggleFaq(this.parentElement)">
+                <span>What are your delivery times?</span><span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">We offer standard delivery (3–5 business days) and express delivery (1–2 business days). Orders placed before 2pm on weekdays are dispatched the same day. Free delivery on all orders over $50.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="uiController.toggleFaq(this.parentElement)">
+                <span>Are all Fusion Beauty products cruelty-free?</span><span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">Absolutely. We are proudly 100% cruelty-free and never test on animals at any stage of production. Our entire range is certified and we only partner with suppliers who share our ethical values.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="uiController.toggleFaq(this.parentElement)">
+                <span>What is your return and exchange policy?</span><span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">We accept returns within 30 days of purchase for unopened, unused products in their original packaging. Simply contact our customer care team and we'll arrange a hassle-free return or exchange for you.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="uiController.toggleFaq(this.parentElement)">
+                <span>How do I find my perfect foundation shade?</span><span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">Start by identifying your undertone — warm, cool, or neutral. Our AI Beauty Assistant can help narrow down your shade based on your skin tone. You can also request a free sample kit from our customer care team before committing to a full size.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="uiController.toggleFaq(this.parentElement)">
+                <span>Do you offer samples or travel sizes?</span><span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">Yes! Join our Beauty Club and receive a complimentary sample kit with your first order. We also offer travel-size versions of our bestselling serums and moisturisers — perfect for on-the-go glam.</div>
+        </div>
+    </div>
+</div>
+
+<!-- CONTACT SECTION -->
+<div class="section" id="contact-section">
+    <div class="section-header">
+        <p>We'd Love to Hear From You</p>
+        <h2>Get In Touch</h2>
+    </div>
+    <div class="contact-grid">
+        <div>
+            <div class="contact-form" id="contactForm">
+                <input class="contact-input" id="contactName" type="text" placeholder="Your full name">
+                <input class="contact-input" id="contactEmail" type="email" placeholder="Your email address">
+                <input class="contact-input" id="contactSubject" type="text" placeholder="Subject">
+                <textarea class="contact-input contact-textarea" id="contactMessage" placeholder="Your message..."></textarea>
+                <button class="btn-luxury" onclick="uiController.submitContact()">Send Message</button>
+            </div>
+            <div class="contact-success" id="contactSuccess">
+                <div class="contact-success-icon">💌</div>
+                <h3>Message Sent!</h3>
+                <p>Thank you for reaching out. Our team will get back to you within 24 hours.</p>
+            </div>
+        </div>
+        <div class="contact-info-panel">
+            <div class="contact-info-card">
+                <div class="contact-info-item">
+                    <div class="contact-info-icon">📧</div>
+                    <div class="contact-info-text"><h4>Email Us</h4><p>hello@fusionbeauty.com<br>support@fusionbeauty.com</p></div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="contact-info-icon">📞</div>
+                    <div class="contact-info-text"><h4>Call Us</h4><p>+92 300 123 4567<br>Mon – Sat, 10am – 8pm</p></div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="contact-info-icon">📍</div>
+                    <div class="contact-info-text"><h4>Visit Us</h4><p>The Beauty Hub, Clifton<br>Karachi, Pakistan</p></div>
+                </div>
+            </div>
+            <div class="contact-map-box">
+                <span>🗺️</span>
+                <span>The Beauty Hub, Clifton, Karachi</span>
+            </div>
+        </div>
+    </div>
+</div>
+
 <footer>
     <div class="footer-grid">
         <div class="footer-col">
             <h4>Fusion Beauty</h4>
-            <p style="margin-bottom: 20px; line-height: 1.6;">Crafting clean, gentle formulas that celebrate your natural glow. Cruelty-free and lovingly made.</p>
+            <p style="line-height: 1.6; margin-bottom: 14px;">Crafting clean, gentle formulas that celebrate your natural glow. Cruelty-free and lovingly made.</p>
+            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px;">Stay in the glow</p>
+            <div class="footer-newsletter-form">
+                <input type="email" id="footerEmailInput" placeholder="Your email">
+                <button onclick="uiController.submitFooterNewsletter()">Join</button>
+            </div>
         </div>
         <div class="footer-col">
             <h4>Explore</h4>
             <ul>
-                <li><a href="#">Our Story</a></li>
-                <li><a href="#">Ingredients Glossary</a></li>
-                <li><a href="#">The Beauty Blog</a></li>
+                <li><a href="#about-section">Our Story</a></li>
+                <li><a href="#faq-section">FAQ</a></li>
+                <li><a href="#prod-section">The Boutique</a></li>
             </ul>
         </div>
         <div class="footer-col">
             <h4>Customer Care</h4>
             <ul>
-                <li><a href="#">Shipping & Returns</a></li>
-                <li><a href="#">Track Order</a></li>
-                <li><a href="#">Contact Us</a></li>
+                <li><a href="#faq-section">Shipping & Returns</a></li>
+                <li><a href="#contact-section">Track Order</a></li>
+                <li><a href="#contact-section">Contact Us</a></li>
             </ul>
         </div>
     </div>
@@ -1019,30 +2268,79 @@ footer {
 <script>
 const CosmeticsStore = {
     products: [
-        { id: 1, name: "Velvet Foundation Glow", price: 25.00, category: "makeup", img: "makeup.jpeg" },
-        { id: 2, name: "Luxury Matte Lipstick", price: 12.00, category: "lip", img: "lip.jpeg" },
-        { id: 3, name: "Hydrating Day Cream", price: 34.00, category: "skincare", img: "skincare.jpeg" },
-        { id: 4, name: "Absolute Precision Eyeliner", price: 16.50, category: "eye", img: "eye.jpeg" },
-        { id: 5, name: "Active Retinol Glow Serum", price: 30.00, category: "serum", img: "serums.jpeg" },
-        { id: 6, name: "Satin Luminizing Blush", price: 18.50, category: "makeup", img: "makeup.jpeg" }
+        {
+            id: 1, name: "Velvet Foundation Glow", price: 25.00, category: "makeup", img: "makeup.jpeg", badge: "bestseller",
+            desc: "A silky, buildable foundation that blends seamlessly for a natural, radiant finish. Lightweight and breathable — your skin will look effortlessly flawless all day long.",
+            ingredients: "Hyaluronic Acid, Vitamin E, Rose Hip Oil, SPF 15, Niacinamide",
+            rating: 4.8, reviews: 124
+        },
+        {
+            id: 2, name: "Luxury Matte Lipstick", price: 12.00, category: "lip", img: "lip.jpeg", badge: "bestseller",
+            desc: "Rich, velvety colour that lasts all day without drying your lips. Our comfort-matte formula delivers intense pigment with a soft, featherweight feel.",
+            ingredients: "Shea Butter, Vitamin C, Jojoba Oil, Beeswax, Argan Oil",
+            rating: 4.9, reviews: 218
+        },
+        {
+            id: 3, name: "Hydrating Day Cream", price: 34.00, category: "skincare", img: "skincare.jpeg", badge: null,
+            desc: "A luxurious daily moisturiser that wraps skin in 24-hour hydration. Infused with a delicate rose scent, it leaves your complexion plump, dewy, and glowing.",
+            ingredients: "Rose Water, Ceramides, Peptides, Aloe Vera, Squalane",
+            rating: 4.7, reviews: 95
+        },
+        {
+            id: 4, name: "Absolute Precision Eyeliner", price: 16.50, category: "eye", img: "eye.jpeg", badge: "new", inStock: false,
+            desc: "Define and intensify your gaze with our ultra-fine precision eyeliner. Smudge-proof, long-lasting formula that glides on effortlessly for a flawless line every time.",
+            ingredients: "Vitamin E, Aloe Extract, Black Iron Oxide, Panthenol",
+            rating: 4.6, reviews: 67
+        },
+        {
+            id: 5, name: "Active Retinol Glow Serum", price: 30.00, category: "serum", img: "serums.jpeg", badge: "bestseller",
+            desc: "Our star serum visibly reduces fine lines, evens skin tone, and boosts radiance overnight. Encapsulated retinol releases gently for maximum results with minimal irritation.",
+            ingredients: "Encapsulated Retinol, Hyaluronic Acid, Vitamin C, Ferulic Acid, Bakuchiol",
+            rating: 4.9, reviews: 183
+        },
+        {
+            id: 6, name: "Satin Luminizing Blush", price: 18.50, category: "makeup", img: "makeup.jpeg", badge: "new",
+            desc: "A buildable, satin-finish blush that adds a natural flush of colour and a lit-from-within glow. Finely milled pigments blend beautifully for a seamless, healthy look.",
+            ingredients: "Mica, Vitamin E, Jojoba Wax, Rose Extract, Silk Powder",
+            rating: 4.7, reviews: 89
+        }
     ],
     cart: [],
 
     addToCart(id) {
         const item = this.products.find(p => p.id === id);
-        if (item) {
-            this.cart.push(item);
-            uiController.renderCartDOM();
+        if (!item) return;
+        const existing = this.cart.find(c => c.product.id === id);
+        if (existing) {
+            existing.qty++;
+        } else {
+            this.cart.push({ product: item, qty: 1 });
         }
+        uiController.renderCartDOM();
+        uiController.showToast(`✓  ${item.name} added to bag`, 'success');
+        uiController.pulseCartBadge();
+        uiController.showCartPreview(item);
     },
 
-    removeFromCart(index) {
-        this.cart.splice(index, 1);
+    decrementQty(id) {
+        const entry = this.cart.find(c => c.product.id === id);
+        if (!entry) return;
+        entry.qty--;
+        if (entry.qty === 0) this.cart = this.cart.filter(c => c.product.id !== id);
         uiController.renderCartDOM();
     },
 
+    removeFromCart(id) {
+        this.cart = this.cart.filter(c => c.product.id !== id);
+        uiController.renderCartDOM();
+    },
+
+    getTotalItems() {
+        return this.cart.reduce((sum, c) => sum + c.qty, 0);
+    },
+
     getCartSubtotal() {
-        return this.cart.reduce((sum, i) => sum + i.price, 0);
+        return this.cart.reduce((sum, c) => sum + c.product.price * c.qty, 0);
     }
 };
 
@@ -1050,26 +2348,341 @@ const uiController = {
 
     init() {
         this.renderProducts(CosmeticsStore.products);
+        this.renderCartDOM();
         this.bot("Hi ✨ I'm your AI Beauty Assistant. Ask me anything about skincare or makeup!");
+        this.setupNavHighlight();
+        this.initScrollFeatures();
+        this.initSearch();
+        this.initCookieNotice();
+    },
+
+    // SCROLL PROGRESS + BACK TO TOP
+    initScrollFeatures() {
+        const progressBar = document.getElementById('scrollProgress');
+        const backBtn     = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const total    = document.documentElement.scrollHeight - window.innerHeight;
+            progressBar.style.width = (scrolled / total * 100) + '%';
+            backBtn.classList.toggle('visible', scrolled > 400);
+        });
+    },
+
+    // LIVE SEARCH
+    initSearch() {
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const q = e.target.value.trim().toLowerCase();
+            const filtered = q
+                ? CosmeticsStore.products.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q))
+                : CosmeticsStore.products;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector('.filter-btn[data-cat="all"]').classList.add('active');
+            this.renderProducts(filtered);
+        });
+    },
+
+    // TOAST
+    showToast(msg, type = 'success') {
+        const container = document.getElementById('toastContainer');
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.textContent = msg;
+        container.appendChild(toast);
+        setTimeout(() => {
+            toast.classList.add('fadeout');
+            toast.addEventListener('animationend', () => toast.remove());
+        }, 2800);
+    },
+
+    // CART BADGE PULSE
+    pulseCartBadge() {
+        const badge = document.getElementById('cartCounter');
+        badge.classList.remove('pulse');
+        void badge.offsetWidth;
+        badge.classList.add('pulse');
+        badge.addEventListener('animationend', () => badge.classList.remove('pulse'), { once: true });
+    },
+
+    // LIGHTBOX
+    openLightbox(src, alt) {
+        document.getElementById('lightboxImg').src = src;
+        document.getElementById('lightboxImg').alt = alt;
+        document.getElementById('lightboxOverlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    },
+    closeLightbox() {
+        document.getElementById('lightboxOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+    },
+
+    // MOBILE MENU
+    toggleMobileMenu() {
+        const btn  = document.getElementById('hamburgerBtn');
+        const menu = document.getElementById('mobileMenu');
+        btn.classList.toggle('open');
+        menu.classList.toggle('open');
+    },
+    closeMobileMenu() {
+        document.getElementById('hamburgerBtn').classList.remove('open');
+        document.getElementById('mobileMenu').classList.remove('open');
+    },
+
+    // NEWSLETTER
+    openNewsletter() {
+        document.getElementById('newsletterOverlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    },
+    closeNewsletter() {
+        document.getElementById('newsletterOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+            document.getElementById('nlForm').style.display = 'block';
+            document.getElementById('nlSuccess').style.display = 'none';
+            document.getElementById('nlEmailInput').value = '';
+        }, 400);
+    },
+    submitNewsletter() {
+        const input = document.getElementById('nlEmailInput');
+        const email = input.value.trim();
+        const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        if (!valid) {
+            input.style.borderColor = '#c0392b';
+            this.showToast('Please enter a valid email address.', 'error');
+            setTimeout(() => input.style.borderColor = '', 1500);
+            return;
+        }
+        document.getElementById('nlForm').style.display = 'none';
+        document.getElementById('nlSuccess').style.display = 'flex';
+    },
+    submitFooterNewsletter() {
+        const input = document.getElementById('footerEmailInput');
+        const email = input.value.trim();
+        const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        if (!valid) { this.showToast('Please enter a valid email address.', 'error'); return; }
+        input.value = '';
+        this.showToast('✓  You\'re on the list! Check your inbox.', 'success');
+    },
+
+    // FAQ ACCORDION
+    toggleFaq(item) {
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+    },
+
+    // CONTACT FORM
+    submitContact() {
+        const name    = document.getElementById('contactName').value.trim();
+        const email   = document.getElementById('contactEmail').value.trim();
+        const message = document.getElementById('contactMessage').value.trim();
+        if (!name || !email || !message) { this.showToast('Please fill in all required fields.', 'error'); return; }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { this.showToast('Please enter a valid email address.', 'error'); return; }
+        document.getElementById('contactForm').style.display = 'none';
+        document.getElementById('contactSuccess').style.display = 'block';
+        this.showToast('✓  Message sent! We\'ll be in touch soon.', 'success');
+    },
+
+    // CHECKOUT
+    openCheckout() {
+        if (CosmeticsStore.cart.length === 0) {
+            this.showToast('Your bag is empty — add some products first!', 'error');
+            return;
+        }
+        this.renderCheckoutSummary();
+        document.getElementById('checkoutFormWrap').style.display = 'block';
+        document.getElementById('orderConfirmed').style.display = 'none';
+        document.getElementById('checkoutOverlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    },
+    closeCheckout() {
+        document.getElementById('checkoutOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+    },
+    renderCheckoutSummary() {
+        document.getElementById('checkoutItemsList').innerHTML =
+            CosmeticsStore.cart.map(c => `
+                <div class="checkout-summary-item">
+                    <span>${c.product.name} × ${c.qty}</span>
+                    <span>$${(c.product.price * c.qty).toFixed(2)}</span>
+                </div>`).join('');
+        document.getElementById('checkoutTotal').textContent = '$' + CosmeticsStore.getCartSubtotal().toFixed(2);
+    },
+    submitOrder() {
+        const fields = ['checkoutName','checkoutEmail','checkoutPhone','checkoutAddress','checkoutCity'];
+        const vals   = fields.map(id => document.getElementById(id).value.trim());
+        if (vals.some(v => !v)) { this.showToast('Please fill in all required fields.', 'error'); return; }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(vals[1])) { this.showToast('Please enter a valid email address.', 'error'); return; }
+        const ref = 'FB-' + Date.now().toString().slice(-6);
+        document.getElementById('orderNumber').textContent = ref;
+        document.getElementById('checkoutFormWrap').style.display = 'none';
+        document.getElementById('orderConfirmed').style.display   = 'flex';
+        CosmeticsStore.cart = [];
+        this.renderCartDOM();
+        fields.forEach(id => document.getElementById(id).value = '');
+    },
+
+    // FLOATING CART PREVIEW
+    showCartPreview(product) {
+        document.getElementById('cartPreviewImg').src       = product.img;
+        document.getElementById('cartPreviewImg').alt       = product.name;
+        document.getElementById('cartPreviewName').textContent  = product.name;
+        document.getElementById('cartPreviewPrice').textContent = '$' + product.price.toFixed(2);
+        document.getElementById('cartPreview').classList.add('visible');
+        clearTimeout(this._previewTimer);
+        this._previewTimer = setTimeout(() => this.hideCartPreview(), 4000);
+    },
+    hideCartPreview() {
+        document.getElementById('cartPreview').classList.remove('visible');
+    },
+
+    // COOKIE NOTICE
+    initCookieNotice() {
+        if (!localStorage.getItem('fb_cookies')) {
+            setTimeout(() => document.getElementById('cookieNotice').classList.add('visible'), 2200);
+        }
+    },
+    acceptCookies() {
+        localStorage.setItem('fb_cookies', '1');
+        document.getElementById('cookieNotice').classList.remove('visible');
+        this.showToast('✓  Cookie preferences saved.', 'success');
+    },
+    declineCookies() {
+        document.getElementById('cookieNotice').classList.remove('visible');
+    },
+
+    // SKELETON LOADERS
+    showSkeletons(count = 6) {
+        const grid = document.getElementById('productGrid');
+        grid.innerHTML = Array.from({ length: count }, () => `
+            <div class="skeleton-card">
+                <div class="skeleton-img"></div>
+                <div class="skeleton-body">
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line short"></div>
+                </div>
+            </div>`).join('');
+    },
+
+    setupNavHighlight() {
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        const setActive = (sectionId) => {
+            navLinks.forEach(l => l.classList.remove('active'));
+            const match = [...navLinks].find(l => l.dataset.section === sectionId);
+            if (match) match.classList.add('active');
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) setActive(entry.target.id || 'hero');
+            });
+        }, { threshold: 0.4 });
+
+        ['cat-section', 'prod-section', 'promo-section', 'about-section', 'faq-section', 'contact-section'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) observer.observe(el);
+        });
+
+        // Highlight Collection when near top
+        const heroObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) setActive('hero');
+        }, { threshold: 0.3 });
+        heroObserver.observe(document.querySelector('.hero'));
+    },
+
+    // PRODUCT MODAL
+    openProductModal(id) {
+        const p = CosmeticsStore.products.find(p => p.id === id);
+        if (!p) return;
+        document.getElementById('modalImg').src = p.img;
+        document.getElementById('modalImg').alt = p.name;
+        document.getElementById('modalCategory').textContent = p.category.charAt(0).toUpperCase() + p.category.slice(1);
+        document.getElementById('modalName').textContent = p.name;
+        document.getElementById('modalStars').textContent = this.renderStars(p.rating);
+        document.getElementById('modalReviews').textContent = `${p.rating} (${p.reviews} reviews)`;
+        document.getElementById('modalPrice').textContent = `$${p.price.toFixed(2)}`;
+        document.getElementById('modalDesc').textContent = p.desc;
+        document.getElementById('modalIngredients').textContent = p.ingredients;
+        document.getElementById('modalAddBtn').onclick = () => {
+            CosmeticsStore.addToCart(p.id);
+            this.closeProductModal();
+            this.openCart();
+        };
+        document.getElementById('productModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    },
+
+    closeProductModal() {
+        document.getElementById('productModal').classList.remove('active');
+        document.body.style.overflow = '';
+    },
+
+    renderStars(rating) {
+        return Array.from({ length: 5 }, (_, i) => i < Math.round(rating) ? '★' : '☆').join('');
+    },
+
+    // CART OPEN/CLOSE
+    openCart() {
+        document.getElementById("cartDrawer").classList.add("open");
+        document.getElementById("cartOverlay").style.display = "block";
+        this.renderCartDOM();
+    },
+
+    closeCart() {
+        document.getElementById("cartDrawer").classList.remove("open");
+        document.getElementById("cartOverlay").style.display = "none";
+    },
+
+    // FILTER
+    filterProducts(category, btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filtered = category === 'all'
+            ? CosmeticsStore.products
+            : CosmeticsStore.products.filter(p => p.category === category);
+        this.renderProducts(filtered);
+    },
+
+    triggerFilterFromRow(category) {
+        document.getElementById('prod-section').scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+            const btn = document.querySelector(`.filter-btn[data-cat="${category}"]`);
+            if (btn) this.filterProducts(category, btn);
+        }, 600);
     },
 
     // PRODUCTS
     renderProducts(items) {
         const grid = document.getElementById("productGrid");
 
+        if (items.length === 0) {
+            grid.innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-state-icon">🔍</div>
+                    <h3>No products found</h3>
+                    <p>Try a different search term or browse all categories.</p>
+                </div>`;
+            return;
+        }
+
         grid.innerHTML = items.map(p => `
-            <div class="product-card">
-                <div class="product-image-wrap">
-                    <img src="${p.img}" alt="${p.name}">
+            <div class="product-card" onclick="uiController.openProductModal(${p.id})" style="cursor:pointer;">
+                ${p.badge ? `<span class="product-badge badge-${p.badge}">${p.badge}</span>` : ''}
+                ${p.inStock === false ? `<span class="oos-badge">Out of Stock</span>` : ''}
+                <div class="product-image-wrap" style="${p.inStock === false ? 'opacity:0.55;' : ''}">
+                    <img src="${p.img}" alt="${p.name}" loading="lazy"
+                         onclick="event.stopPropagation(); uiController.openLightbox('${p.img}','${p.name}')">
                     <div class="product-overlay">
-                        <button class="btn-add-cart" onclick="CosmeticsStore.addToCart(${p.id})">
-                            Add To Cart
-                        </button>
+                        ${p.inStock === false
+                            ? `<button class="btn-out-of-stock" disabled onclick="event.stopPropagation()">Out of Stock</button>`
+                            : `<button class="btn-add-cart" onclick="event.stopPropagation(); CosmeticsStore.addToCart(${p.id})">Add To Cart</button>`
+                        }
                     </div>
                 </div>
                 <div class="product-meta">
                     <h3>${p.name}</h3>
-                    <div class="product-price">$${p.price}</div>
+                    <div style="color:var(--primary); font-size:13px; margin-bottom:4px; letter-spacing:1px;">${uiController.renderStars(p.rating)} <span style="color:var(--text-muted); font-size:11px;">(${p.reviews})</span></div>
+                    <div class="product-price">$${p.price.toFixed(2)}</div>
                 </div>
             </div>
         `).join('');
@@ -1077,21 +2690,26 @@ const uiController = {
 
     // CART
     renderCartDOM() {
-        document.getElementById("cartCounter").innerText = CosmeticsStore.cart.length;
+        document.getElementById("cartCounter").innerText = CosmeticsStore.getTotalItems();
 
         const box = document.getElementById("cartItemsList");
 
         if (CosmeticsStore.cart.length === 0) {
-            box.innerHTML = "<p style='text-align:center'>Cart is empty</p>";
+            box.innerHTML = "<p style='text-align:center; color:var(--text-muted); padding:20px 0;'>Your beauty bag is empty ✨</p>";
         } else {
-            box.innerHTML = CosmeticsStore.cart.map((p, i) => `
+            box.innerHTML = CosmeticsStore.cart.map(c => `
                 <div class="cart-item">
-                    <img src="${p.img}" class="cart-item-img">
+                    <img src="${c.product.img}" class="cart-item-img" alt="${c.product.name}">
                     <div class="cart-item-details">
-                        <h4>${p.name}</h4>
-                        <div>$${p.price}</div>
-                        <button onclick="CosmeticsStore.removeFromCart(${i})">Remove</button>
+                        <h4>${c.product.name}</h4>
+                        <div class="cart-item-price">$${(c.product.price * c.qty).toFixed(2)}</div>
+                        <div class="qty-controls">
+                            <button class="qty-btn" onclick="CosmeticsStore.decrementQty(${c.product.id})">−</button>
+                            <span class="qty-value">${c.qty}</span>
+                            <button class="qty-btn" onclick="CosmeticsStore.addToCart(${c.product.id})">+</button>
+                        </div>
                     </div>
+                    <button class="cart-item-remove" onclick="CosmeticsStore.removeFromCart(${c.product.id})">✕</button>
                 </div>
             `).join('');
         }

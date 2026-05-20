@@ -71,8 +71,6 @@ Assistant:
             }
         );
 
-        console.log(response.data);
-
         const reply =
         response.data
         .candidates[0]
